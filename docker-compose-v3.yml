@@ -1,0 +1,77 @@
+version: '2.2'
+services:
+  elasticsearch1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    container_name: elasticsearch1
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - node.data=true
+      - node.ingest=true
+      - node.ml=false
+      - xpack.ml.enabled=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 65001:9200
+    networks:
+      - esnet
+  elasticsearch2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    container_name: elasticsearch2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - node.data=true
+      - node.ingest=true
+      - node.ml=false
+      - xpack.ml.enabled=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    ports:
+      - 65002:9200
+    networks:
+      - esnet
+  elasticsearch3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    container_name: elasticsearch3
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - node.master=true
+      - node.data=true
+      - node.ingest=true
+      - node.ml=false
+      - xpack.ml.enabled=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata3:/usr/share/elasticsearch/data
+    ports:
+      - 65003:9200
+    networks:
+      - esnet
+  volumes:
+    esdata1:
+    esdata2:
+    esdata3:
+
+networks:
+  esnet:
+
+        
